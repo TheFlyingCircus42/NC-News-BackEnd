@@ -1,5 +1,6 @@
 const db = require("../connection");
 const format = require("pg-format");
+const { createLookUpObject } = require("./seed-utils");
 
 const seed = ({ topicData, userData, articleData, commentData }) => {
   return db
@@ -50,8 +51,7 @@ const seed = ({ topicData, userData, articleData, commentData }) => {
 
     .then(() => {
       const formattedTopicsData = topicData.map(
-        ({ slug, description, img_url }) => 
-          [slug, description, img_url],
+        ({ slug, description, img_url }) => [slug, description, img_url],
       );
       const insertTopicsQuery = format(
         "INSERT INTO topics (slug, description, img_url) VALUES %L;",
@@ -62,8 +62,7 @@ const seed = ({ topicData, userData, articleData, commentData }) => {
 
     .then(() => {
       const formattedUserData = userData.map(
-        ({ username, name, avatar_url }) => 
-          [username, name, avatar_url],
+        ({ username, name, avatar_url }) => [username, name, avatar_url],
       );
       const insertUsersQuery = format(
         `INSERT INTO users(username, name, avatar_url) VALUES %L;`,
@@ -72,43 +71,57 @@ const seed = ({ topicData, userData, articleData, commentData }) => {
       return db.query(insertUsersQuery);
     })
 
-    .then(()=>{
-      const formattedArticlesData = articleData.map(
-        ({title , topic , author , body , created_at , votes , article_img_url}) =>
-        [title , topic , author , body , created_at , votes , article_img_url],
-      );
-      const insertArticlesQuery = format (
-        `INSERT INTO articles (title , topic , author , body , created_at , votes , article_img_url) VALUES %L;`,
+    .then(() => {
+      const formattedArticlesData = articleData.map((article) => {
+        return [
+          article.title,
+          article.topic,
+          article.author,
+          article.body,
+          article.created_at,
+          article.votes,
+          article.article_img_url,
+        ];
+      });
+
+      const insertArticlesQuery = format(
+        `INSERT INTO articles (title , topic , author , body , created_at , votes , article_img_url) VALUES %L RETURNING *`,
         formattedArticlesData,
       );
       return db.query(insertArticlesQuery);
     })
 
-    .then(()=>{
-      const formattedCommentData = commentData.map(
-        ({article_title , body , votes , author , created_at}) =>
-        [article_title , body , votes , author , created_at],
+    .then(({ rows }) => {
+      const articlesFromDB = rows;
+
+      const articlesLookUpObject = createLookUpObject(
+        articlesFromDB,
+        "title",
+        "article_id",
       );
-      const insertCommentsQuery = format (
-        `INSERT INTO comments (article_title , body , votes , author , created_at) VALUES %L;`,
-        formattedCommentData
+
+      const formattedCommentData = commentData.map((comment) => {
+        const article_id = articlesLookUpObject[comment.article_title];
+
+        return [
+          article_id,
+          comment.body,
+          comment.votes,
+          comment.author,
+          comment.created_at,
+        ];
+      });
+
+      const insertCommentsQuery = format(
+        `INSERT INTO comments (article_id, body, votes, author, created_at)
+     VALUES %L;`,
+        formattedCommentData,
       );
-      return db.query(insertCommentsQuery)
+
+      return db.query(insertCommentsQuery);
     });
-    
+  
 };
 
-//////////////////////
 module.exports = seed;
 
-// .then(()=>
-//             {
-//               return db.query(`CREATE TABLE articles(
-//                 username VARCHAR PRIMARY KEY,
-//                 name VARCHAR,
-//                 avatar_URL(1000) )`)
-//             })
-//             .then(()=>
-//               {
-//                 return db.query(`CREATE TABLE `)
-//               })
