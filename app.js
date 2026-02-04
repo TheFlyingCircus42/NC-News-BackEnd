@@ -2,16 +2,33 @@
 
 const express = require("express")
 const app = express()
-const db = require("./db/connection")
 app.use(express.json())
 
+///
+app.get('/', (req, res) => {
+  res.status(200).send({ message: 'Hello World!' });
+});
 
-const ncNewsRouter = require("./routes/ncNews-Routes");
-app.use('/api/topics',ncNewsRouter);
+
+/// # 000 - Hello
+const ncNewsHelloRouter = require('./routes/ncNews-Routes');
+app.use('/hello' , ncNewsHelloRouter)
+
+/// # 001 - TOPICS
+const topicsRouter = require('./routes/topics-routes');
+app.use('/api/topics' , topicsRouter)
+
 
 
 module.exports = app
 
+///////////////////////////////////////
+/// # 001 - Get All Topics
+// const ncNewsRouter = require("./routes/ncNews-Routes");
+// app.use('/api/topics',ncNewsRouter);
+
+/// # 002 - Get All Articles
+// app.use('api/article' , ncNewsRouter); //<<-- is it the smae router...?
 
 
 
