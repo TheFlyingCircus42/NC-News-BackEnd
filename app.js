@@ -3,17 +3,26 @@
 const express = require("express")
 const app = express()
 const db = require("./db/connection")
-// const { ident } = require("pg-format")
-// const listen = ("./listener.js")
-// const port = 8100
 app.use(express.json())
 
-app.get("/", (request, response) => {
-    response.status(200).send({message: "hello from express"})
-})
+
+const ncNewsRouter = require("./routes/ncNews-Routes");
+app.use('/api/topics',ncNewsRouter);
+
+
 module.exports = app
 
 
+
+
+
+
+// app.get("/", (request, response) => {
+//     response.status(200).send({message: "hello from express"})
+// })
+// const { ident } = require("pg-format")
+// const listen = ("./listener.js")
+// const port = 8100
 // const express = require("express")
 // const ncNewsRouter = require() //<<--- !!!
 
