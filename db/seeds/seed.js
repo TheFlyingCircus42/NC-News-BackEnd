@@ -3,8 +3,13 @@ const format = require("pg-format");
 const { createLookUpObject } = require("./seed-utils");
 
 const seed = ({ topicData, userData, articleData, commentData }) => {
-  return db
-    .query("DROP TABLE IF EXISTS comments")
+    return db.query("DROP TABLE IF EXISTS commentReactions")
+    .then(()=>{
+      return db.query("DROP TABLE IF EXISTS reactions");
+    })
+    .then(()=>{
+      return db.query("DROP TABLE IF EXISTS comments");
+    })
     .then(() => {
       return db.query("DROP TABLE IF EXISTS articles");
     })
@@ -124,4 +129,3 @@ const seed = ({ topicData, userData, articleData, commentData }) => {
 };
 
 module.exports = seed;
-

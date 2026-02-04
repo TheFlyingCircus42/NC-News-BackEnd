@@ -1,0 +1,21 @@
+You are now connected to database "nc_news_test" as user "rob".
+"REACTIONS"
+ reaction_id | reaction 
+-------------+----------
+           1 | like
+           2 | love
+           3 | laugh
+           4 | angry
+           5 | sad
+(5 rows)
+
+"COMMENT REACTIONS"
+ commentreaction_id | comment_id | reaction |   username    |         created_at         
+--------------------+------------+----------+---------------+----------------------------
+                  1 |          1 | like     | butter_bridge | 2026-02-01 19:21:41.941442
+                  2 |          1 | laugh    | icellusedkars | 2026-02-01 19:21:41.941442
+                  3 |          2 | love     | rogersop      | 2026-02-01 19:21:41.941442
+                  4 |          3 | angry    | butter_bridge | 2026-02-01 19:21:41.941442
+                  5 |          3 | sad      | icellusedkars | 2026-02-01 19:21:41.941442
+(5 rows)
+
