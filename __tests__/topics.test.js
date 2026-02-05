@@ -9,17 +9,17 @@ beforeEach(() => {
 });
 
 afterAll(() => {
-  return db.end;
+  return db.end();
 });
 
-/// TEST FOR 001 Topics
+/// TEST FOR 001 Topics (GET ALL TOPICS)
 describe("/api/topics" , () => {
   test("GET: 200 - responds with an array of Topic objects" , () => {
     return request(app)
     .get("/api/topics")
     .expect(200)
     .then(({ body }) => {
-      const { topics } = body;
+      const { topics } = body;  ///<<< try test without this (body.topic??s)
       // returns an array
       expect(Array.isArray(topics)).toBe(true)
       // array conatins objects

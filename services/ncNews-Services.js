@@ -9,16 +9,12 @@ exports.fetchHello = () =>
         return fetchHello();
     }
 
+/// 001 Topics
 
-///// DEAD BELOW /////
+/// 002 ARTICLES
+const { fetchArticles } = require('../models/ncNews-Model');
+exports.fetchArticles = () => 
+    {
+        return fetchArticles();
+    }
 
-// require get all topics ???
-//const { getAllTopics } = require('../controllers/ncNews-Controller');
-
-// / # 001 - Get All Topics
-// const { fetchAllTopics } = require('../models/ncNews-Model');
-//     // this looks pointless because it is... for now
-// exports.getAllTopics = () => 
-//     {
-//         return fetchAllTopics();
-//     }

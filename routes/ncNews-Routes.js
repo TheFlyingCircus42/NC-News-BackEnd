@@ -2,31 +2,22 @@
 /// SEND TO CONTROLLER -->
 
 const express = require("express");
-const router = express.Router(); /// <<< can I move to top???
+//
 
 
 /// # 000 - Hello
+const router = express.Router(); 
 const { fetchHello } = require('../controllers/ncNews-Controller')
 router.get('/' , fetchHello);
 
+/// 001 TOPICS
 
-module.exports = router;
+/// 002 - Articles
+const articlesRouter = express.Router();
+const { fetchArticles } = require('../controllers/ncNews-Controller')
+articlesRouter.get('/' , fetchArticles);
 
-///// DEAD BELOW /////
-
-// /// # 001 TOPICS
-// const { fetchTopics } = require('../controllers/topics-controller')
-// router.get('/' , fetchTopics);
-/// # 001 - Get All Topics
-//const { getAllTopics } = require("../controllers/ncNews-Controller");
-// const router = express.Router(); /// <<< can I move to top???
-//router.get('/' , getAllTopics);
-
-/// # 002 - Get All Articles
-// router.get('/' , getAllArticles)
+module.exports=router
+module.exports=articlesRouter
 
 
-// router.get('/' , (request , response) => 
-//     {
-//         response.send("NC NEWS PLACE HOLDER ") //<<----!!!!!
-//     });

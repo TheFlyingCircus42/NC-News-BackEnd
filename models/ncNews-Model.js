@@ -4,6 +4,7 @@
 
 const db = require('../db/connection');
 
+
 /// # 000 - Hello
 exports.fetchHello = ()=>
     {
@@ -11,13 +12,11 @@ exports.fetchHello = ()=>
         .then(({ rows }) => rows);
     }
 
+/// 001 TOPICS
 
-
-    ///// DEAD BELOW /////
-
-// /// # 001 - Get All Topics
-// exports.fetchAllTopics = ()=> 
-//     {
-//         return db.query(`SELECT * FROM topics;`)
-//         .then(({ rows }) => rows);
-//     }
+/// 002 ARTICLES
+exports.fetchArticles = () => 
+    {
+        return db.query(`SELECT * FROM articles;`)
+        .then (({ rows }) => rows);
+    }
