@@ -15,20 +15,7 @@ afterAll(() => {
 /// USERS TESTS ///
 describe("/api/users" , () => 
   {
-    // Should be vailable on  /api/users 
-    test.only('GET: 200:  "/api/users" is available and retruns message', ()=> 
-      {
-        return request(app)
-        .get('/api/users')
-        .expect(200)
-        .then(({ body }) => 
-          {
-            console.log(body)
-            expect(body).toHaveProperty('msg');
-            expect(body.msg).toBe('users route working')
-          });
-        });
-        // get all users
+
         test('GET: 200: ... should return an object with key of users' , ()=>
           {
             return request(app)
@@ -59,6 +46,7 @@ describe("/api/users" , () =>
             avatar_url : (string)` , ()=>
               {
                 return request(app)
+                .get('/api/users')
                 .expect(200)
                 .then(({body})=>
                   {
@@ -66,11 +54,11 @@ describe("/api/users" , () =>
                     users.forEach((user)=>
                       {
                         expect(user).toHaveProperty('username')
-                        expect(typeof user.usename).toBe('string')
+                        expect(typeof user.username).toBe('string')
                         expect(user).toHaveProperty('name')
-                        expect(typeof user.usename).toBe('string')
+                        expect(typeof user.username).toBe('string')
                         expect(user).toHaveProperty('avatar_url')
-                        expect(typeof user.usename).toBe('string')
+                        expect(typeof user.username).toBe('string')
                       }) 
                   })
               });

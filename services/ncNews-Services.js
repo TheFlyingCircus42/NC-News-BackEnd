@@ -18,3 +18,9 @@ exports.fetchArticles = () =>
         return fetchArticles();
     }
 
+/// 003 USERS
+const { fetchUsers } = require('../models/ncNews-Model')
+exports.fetchUsers = () => 
+    {
+        return fetchUsers();
+    }

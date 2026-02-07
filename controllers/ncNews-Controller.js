@@ -27,7 +27,18 @@ exports.fetchArticles = (request , response) =>
                 .send({ articles });
             })
     }
-    
+/// 003 USERS
+const { fetchUsers } = require('../services/ncNews-Services')
+exports.fetchUsers = (request , response ) => 
+    {
+        fetchUsers()
+        .then (users => 
+            {
+                response.status(200)
+                .send({ users });
+                
+            });
+    }
 
 
 

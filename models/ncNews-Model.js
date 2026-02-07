@@ -14,7 +14,7 @@ exports.fetchHello = ()=>
 
 /// 001 TOPICS
 
-/// 002 ARTICLES
+/// 002 ARTICLES (FETCH ALL ARTICLES WITH COMMENT CUONT AS A QUERY)
 exports.fetchArticles = () => 
     {
         return db.query(`SELECT 
@@ -40,4 +40,11 @@ exports.fetchArticles = () =>
             ORDER BY created_at ASC;`)
         .then (({ rows }) => rows);
         
+    }
+
+//// 003 USERS
+exports.fetchUsers = ()=>
+    {
+        return db.query(`SELECT * FROM users;`)
+        .then(({ rows }) => rows);
     }

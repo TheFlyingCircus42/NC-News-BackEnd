@@ -3,10 +3,9 @@
 const express = require("express");
 const router = express.Router(); 
 
-
-/// # 002 ARTICLES  --> fetches all rticles -(minus body + comment count)
-const { fetchTopics } = require('../controllers/topics-controller')
-router.get('/' , fetchTopics);
-
-module.exports = router;
+/// 002 - Articles
+const articlesRouter = express.Router();
+const { fetchArticles } = require('../controllers/ncNews-Controller')
+articlesRouter.get('/' , fetchArticles);
+module.exports=articlesRouter
 

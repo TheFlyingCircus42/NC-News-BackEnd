@@ -114,3 +114,8 @@ describe("GET: /api/articles" , () =>
                 })
 
     });
+
+describe("GET: /api/articles/:article_id", ()=> 
+    {
+        test("GET: 200: ... route is availabel")
+    })
