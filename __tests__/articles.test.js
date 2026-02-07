@@ -12,6 +12,8 @@ afterAll(() => {
   return db.end();
 });
 
+
+
 /// TEST FOR 002 ARTICLES (GET ALL ARTICLES)
 describe("GET: /api/articles" , () => 
     {           
@@ -65,7 +67,7 @@ describe("GET: /api/articles" , () =>
                                     expect(typeof articles[i].article_id).toBe('number')
                                     expect(typeof articles[i].topic).toBe('string')
                                     expect(typeof articles[i].created_at).toBe('string')
-                                    expect(typeof articles[i].votes).toBe('number') //<<-- ?
+                                    expect(typeof articles[i].votes).toBe('number') 
                                     expect(typeof articles[i].article_img_url).toBe('string')
                                 }
                             
@@ -117,5 +119,64 @@ describe("GET: /api/articles" , () =>
 
 describe("GET: /api/articles/:article_id", ()=> 
     {
-        test("GET: 200: ... route is availabel")
+        test("GET: 200: - route is availabel" , () => 
+            {
+                return request(app)
+                .get('/api/:article_id')
+                .expect(200)
+            })
+
+        test("GET: - should return an object with a key of article" , () => 
+            {
+                return request(app)
+                .get('/api/:article_id')
+                .expect(200)
+                .then(({ body }) => 
+                    {
+                        expect(body).toHaveProperty("article")
+                    })
+            })
+
+        test("GET: - the article key should conatin a single article object", ()=> 
+            {
+                return request(app)
+                .get('/api/:article_id')
+                .expect(200)
+                .then(({ body }) => 
+                    {
+                        const { article } = body
+                        expect(article).toBeArray()
+                        expect(typeof article[0]).toBe('object')//<<<--?
+                    })
+
+            })
+
+
+        test(`GET: - the article object should contain the following properties and values:
+            author - string
+            title - string
+            article_id - number
+            body - string
+            topic - string 
+            created_at - string
+            votes - number
+            article_img_url` , () => 
+                {
+                return request(app)
+                .get('/api/:article_id')
+                .expect(200)
+                .then(({ body }) => 
+                    {
+                        const { article } = body
+                        expect(typeof article.author).toBe('string')
+                        expect(typeof article.title).toBe('string')
+                        expect(typeof article.article_id).toBe('number')
+                        expect(typeof article.body).toBe('string')
+                        expect(typeof article.topic).toBe('string')
+                        expect(typeof article.created_at).toBe('string')
+                        expect(typeof article.votes).toBe('number')
+                        expect(typeof article.article_img_url).toBe('string')
+
+                    })
+                })
     })
