@@ -12,10 +12,24 @@ exports.fetchHello = () =>
 /// 001 Topics
 
 /// 002 ARTICLES
+    /// FETCH ALL ARTICLES
 const { fetchArticles } = require('../models/ncNews-Model');
 exports.fetchArticles = () => 
     {
         return fetchArticles();
+    }
+    /// FETCH ARTICLE BY ID
+const { fetchArticleByID } = require('../models/ncNews-Model')
+exports.fetchArticleByID = (article_id) => 
+    {
+        return fetchArticleByID(article_id);
+    }
+
+    /// task 05 FETCH COMMENTS BY ARTICLE ID
+const { fetchArticleComments } = require('../models/ncNews-Model')
+exports.fetchArticleComments = (article_id) => 
+    {
+        return fetchArticleComments(article_id);
     }
 
 /// 003 USERS

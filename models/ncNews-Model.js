@@ -14,7 +14,8 @@ exports.fetchHello = ()=>
 
 /// 001 TOPICS
 
-/// 002 ARTICLES (FETCH ALL ARTICLES WITH COMMENT CUONT AS A QUERY)
+/// 002 ARTICLES 
+    /// (FETCH ALL ARTICLES WITH COMMENT COUNT)
 exports.fetchArticles = () => 
     {
         return db.query(`SELECT 
@@ -42,9 +43,26 @@ exports.fetchArticles = () =>
         
     }
 
+    /// FETCH ARTICLE BY ID
+exports.fetchArticleByID = (article_id) => 
+    {
+        // const { article_id } = request.params
+        return db.query(`SELECT * FROM articles WHERE article_id = $1` , [article_id])
+        .then (({ rows }) => rows)
+    }
+
+    /// task 05 FETCH ARTICLE COMMENTS BY ARTICLE ID
+exports.fetchArticleComments = (article_id) => 
+    {
+        return db.query(`SELECT * FROM comments WHERE article_id = $1` , [article_id])
+        .then (({rows}) => rows)
+    }
+
 //// 003 USERS
+    /// FETCH ALL USERS
 exports.fetchUsers = ()=>
     {
         return db.query(`SELECT * FROM users;`)
         .then(({ rows }) => rows);
     }
+    ///
