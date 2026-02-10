@@ -13,8 +13,6 @@ afterAll(() => {
   return db.end();
 });
 
-
-
 /// TEST FOR 002 ARTICLES (GET ALL ARTICLES)
 describe("GET: /api/articles" , () => 
     {           
@@ -162,7 +160,7 @@ describe("GET: /api/articles/:article_id", ()=>
                 .then(({ body })=> 
                     {
                         const { article } = body
-                        console.log(">>>" , article , '<<<')
+                       
                         expect(article[0].article_id).toBe(5)
                     })
             })
@@ -299,3 +297,30 @@ describe("GET: /api/articles/:article_id/comments" , ()=>
         // test('GET: 200: - should return a message if no comments match teh article ID', ()=> {})
     });
 
+// /// TASK 06 - POST COMMENT TO ARTICLE BY ID
+// describe("POST: /api/articles/:article_id/comments" , ()=> 
+//     {
+//         test("POST: 201: route should be available" , ()=> 
+//             {
+//                 const newComment = 
+//                 {username: 'butter_bridge' , body: 'Is this thing on?'};
+
+//                 return request(app)
+//                 .post('api/articles/1/comments')
+//                 .send(newComment)
+//                 .expect(201)
+//                 .then(({ body })=> 
+//                     {
+//                         const { returnComment } = body;
+
+//                         expect()
+//                     })
+//             })
+//         test("POST: 201: - responds with the posted article")
+//     })
+
+// should be available on /api/articles/:article_id/comments
+//REQUEST accespts
+    // -> OBJECT { username // body}
+// RESPONDS WITH 
+    //-> the posted comment
