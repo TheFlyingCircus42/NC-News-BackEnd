@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NC News API</title>
+    <link rel="stylesheet" href="/css/index-styles.css">
+</head>
+<body>
+    <header>
+        <h1>NC News API</h1>
+        <p>Fetch and post topics, articles and comments across the NC News site.</p>
+    </header>
+    <main>
+        <h2>Available endpoints:</h2>
+        <ul>
+            
+            <li> <h3>GET: '/api/topics'</h3>
+                <p>Retrieve a list of all topics.</p>
+                <h4>Example response:</h4>
+                <pre>
+                    <code>
+{
+    "topics": [
+    {
+      "slug": "coding",
+      "description": "Code is love, code is life"
+    },
+    {
+      "slug": "football",
+      "description": "FOOTIE!"
+    },
+    {
+      "slug": "cooking",
+      "description": "Hey good looking, what you got cooking?"
+    }
+  ]
+}
+                    </code>
+                </pre>
+            </li>
+
+            <li><h3>GET: /api/articles'</h3>
+                <p>Retrieve infor on all articles - excludes article main body text.</p>
+                <h4>Example result:</h4>
+                <p>Note: Result will contain multiple articles objects.</p>
+                <pre><code>
+{
+	"articles": [
+		{
+	    	"author": "happyamy2016",
+		    "title": "High Altitude Cooking",
+		    "article_id": 28,
+		    "topic": "cooking",
+		    "created_at": "2020-01-04T00:24:00.000Z",
+		    "votes": 0,
+		    "article_img_url": "https://images.pexels.com/photos/691114/pexels-photo-691114.jpeg?w=700&h=700",
+		    "comment_count": 5
+	    },
+    ]
+}
+                </code></pre>
+            </li>
+
+            <li><h3>GET: '/api/articles/:article_id'</h3>
+                <p>Will return a single article object, corresponding to the requested id no.</p>
+                <pre><code>
+{
+	"articles": [
+		{
+	    	"author": "happyamy2016",
+		    "title": "High Altitude Cooking",
+		    "article_id": 28,
+		    "topic": "cooking",
+		    "created_at": "2020-01-04T00:24:00.000Z",
+		    "votes": 0,
+		    "article_img_url": "https://images.pexels.com/photos/691114/pexels-photo-691114.jpeg?w=700&h=700",
+		    "comment_count": 5
+	    },
+    ]
+}   
+                </code></pre>
+            </li>
+
+            <li><h3>GET: '/api/articles/:article_id/comments'</h3>
+                <p>Will fetch all comments related to a particular article id</p>
+                <h4>Example Result</h4>
+                <p>Note: Result will contain multiple coment objects if there are multiple matches.</p>
+                <pre><code>
+{
+	"comments": [
+		{
+			"comment_id": 3,
+			"article_id": 3,
+			"body": "Qui sunt sit voluptas repellendus sed. Voluptatem et repellat fugiat. Rerum doloribus eveniet quidem vero aut sint officiis. Dolor facere et et architecto vero qui et perferendis dolorem. Magni quis ratione adipisci error assumenda ut. Id rerum eos facere sit nihil ipsam officia aspernatur odio.",
+			"votes": 3,
+			"author": "grumpy19",
+			"created_at": "2020-09-22T23:18:00.000Z"
+		},
+	]
+}
+                </code></pre>
+            </li>
+
+            <li><h3>POST: '/api/articles/:article_id/comments'</h3>
+                <p> Will post a new comment to an existing article, by article id no and return it if succesful.</p>
+                <h4> Exapmle input </h4>
+                <pre><code>
+{
+  "username": "tickle122",
+  "body": "This is a test comment IS THIS THIG ON?!"
+}
+                </code></pre>
+                <h4> Example Output</h4>
+                <pre><code>
+{
+	"comment": {
+		"comment_id": 334,
+		"article_id": 3,
+		"body": "This is a test comment IS THIS THIG ON?!",
+		"votes": 0,
+		"author": "tickle122",
+		"created_at": "2026-02-10T11:31:19.209Z"
+	}
+}
+                </code></pre>
+            </li>
+
+            <li><h3>GET: '/api/users'</h3>
+                <p>Fetch all user profiles</p>
+                <h4>Example Result</h4>
+                <p>Result will contain multiple user objects</p>
+                <pre><code>
+{
+    "users": [
+	    {
+		    "username": "tickle122",
+		    "name": "Tom Tickle",
+		    "avatar_url": "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953"
+		},
+    ]
+}
+                </code></pre>
+            </li>
+        </ul>
+    </main>
+</body>
+</html>
