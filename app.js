@@ -2,13 +2,24 @@
 
 const express = require("express")
 const app = express()
+
+const path = require('path');
+
 app.use(express.json())
 
+app.use(express.static(path.join(__dirname, 'public')));
 
 /// NO END-POINT                  <<----< REVISIT
 app.get('/', (req, res) => {
-  res.status(200).send({ message: 'Hello World!' });
+res.status(200).send({ message: 'Hello World!' });
 });
+
+/// API only
+app.get('/api', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/html/index.html'));
+});
+
+
 
 /// # 000 - Hello
 const ncNewsHelloRouter = require('./routes/ncNews-Routes');
