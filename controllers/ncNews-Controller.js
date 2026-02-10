@@ -41,7 +41,7 @@ exports.fetchArticleByID = (request , response) =>
                 .send({ article });
             })
     }
-    /// task 05  FETCH ARTICLE COMMENTS BY D
+    /// task 05  FETCH ARTICLE COMMENTS BY ID
 const { fetchArticleComments } = require('../services/ncNews-Services')
 exports.fetchArticleComments = (request , response) => 
     {
@@ -52,6 +52,25 @@ exports.fetchArticleComments = (request , response) =>
             {
                 response.status(200)
                 .send({ comments })
+            })
+    }
+    /// task 06 = POST COMMENT BY AERTICLE ID
+const { postCommentToArticleID } = require('../services/ncNews-Services')
+exports.postCommentToArticleID = (request , response ) => 
+    {
+        // const newComment = request.body;
+        // console.log("new comment (ctrl lyr) >>>",newComment)
+                // const mappedComment = 
+        //     { author: newComment.username, body: newComment.body}
+        // console.log("mapped comment ctrl lyr >>>> mappedComment" , mappedComment)
+        const newComment =request.body
+        console.log("ctrl lyr / newComment >>>",newComment)
+        const { article_id } = request.params;
+
+        postCommentToArticleID(article_id , newComment).then((comment)=> 
+            {
+                response.status(201)
+                .send({ comment } )
             })
     }
 

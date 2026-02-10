@@ -4,7 +4,6 @@
 
 const db = require('../db/connection');
 
-
 /// # 000 - Hello
 exports.fetchHello = ()=>
     {
@@ -56,6 +55,17 @@ exports.fetchArticleComments = (article_id) =>
     {
         return db.query(`SELECT * FROM comments WHERE article_id = $1` , [article_id])
         .then (({rows}) => rows)
+    }
+
+    /// task 06 POST COMMENT BY ARTICLE ID
+exports.postCommentToArticleID = ({ article_id, username , body }) => 
+    {
+        return db.query (
+            `INSERT INTO comments (article_id, author, body)
+            VALUES ($1, $2, $3)
+            RETURNING *;` , [article_id , username , body]
+        )
+        .then(({ rows }) => rows[0]);
     }
 
 //// 003 USERS

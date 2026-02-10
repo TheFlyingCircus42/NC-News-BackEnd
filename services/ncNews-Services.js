@@ -32,6 +32,14 @@ exports.fetchArticleComments = (article_id) =>
         return fetchArticleComments(article_id);
     }
 
+    /// task 06 Post Comment to article ID
+const { postCommentToArticleID } = require('../models/ncNews-Model')
+exports.postCommentToArticleID = (article_id , newComment) => 
+    {
+        return postCommentToArticleID({ article_id , ...newComment});
+    }
+
+
 /// 003 USERS
 const { fetchUsers } = require('../models/ncNews-Model')
 exports.fetchUsers = () => 

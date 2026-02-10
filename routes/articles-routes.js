@@ -18,8 +18,9 @@ articlesRouter.get('/:article_id' , fetchArticleByID)
 const { fetchArticleComments } = require('../controllers/ncNews-Controller')
 articlesRouter.get('/:article_id/comments' , fetchArticleComments)
 
-
-
+// task 06 - POST COMMENT
+const { postCommentToArticleID } = require('../controllers/ncNews-Controller')
+articlesRouter.post('/:article_id/comments' , postCommentToArticleID)
 
 
 ////////////////////////////
