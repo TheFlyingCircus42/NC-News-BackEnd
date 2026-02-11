@@ -293,17 +293,75 @@ describe("GET: /api/articles/:article_id/comments" , ()=>
                     });
 
             });
-
-        // test('GET: 200: - should return a message if no comments match teh article ID', ()=> {})
+                        /// ADD THIS.  !!!!!
+        // test('GET: 200: - should return a message if no comments match teh article ID', ()=> {}) 
     });
 
 // /// TASK 06 - POST COMMENT TO ARTICLE BY ID
+
+// ??? Shpuld this endpoint be different? it matched the GET: article comments EP ??? !!!
+describe.("POST:/api/articles/:article_id/comments", ()=> 
+    {
+        test("POST: 201: route should be available",()=>{
+            const newComment = {username: 'butter_bridge' , body: 'Is this thing on?'} ;
+
+            return request(app)
+            .post('/api/articles/1/comments')
+            .send(newComment)
+            .expect(201)
+        })
+
+        test('POST: 201:  should return an object with the key comment - which holds the comment object',()=>
+            {
+                const newComment = {username: 'icellusedkars' , body: 'This is a drill!'} ;
+
+                return request(app)
+                .post('/api/articles/1/comments')
+                .send(newComment)
+                .expect(201)
+                .then (({ body }) => 
+                    {
+                        //const { returnComment } = body;
+                        expect(body).toHaveProperty("comment")
+                        expect(typeof body.comment).toBe("object")
+                    })
+            });
+        test(`POST: 201: the "comment" object should have the followibg properties amd datat types:
+            comment_id - number
+            article_id - number
+            body - string
+            votes - number
+            author - string
+            created_at - string`, ()=>
+                {
+
+                    const newComment = {username: 'butter_bridge' , body: 'Is this thing on?'}
+
+                    return request(app)
+                    .post('/api/articles/2/comments')
+                    .send(newComment)
+                    .expect(201)
+                    .then(({ body }) => 
+                        {
+                            
+                            expect(typeof body.comment.comment_id).toBe("number")
+                            expect(typeof body.comment.body).toBe('string')
+                            expect(typeof body.comment.votes).toBe('number')
+                            expect(typeof body.comment.author).toBe('string')
+                            expect(typeof body.comment.created_at).toBe('string')
+                        })
+                })    
+    })
+
+
+
+///////////////////////////////////////////////////////////////
 // describe("POST: /api/articles/:article_id/comments" , ()=> 
 //     {
 //         test("POST: 201: route should be available" , ()=> 
 //             {
-//                 const newComment = 
-//                 {username: 'butter_bridge' , body: 'Is this thing on?'};
+//                 const newComment = {username: 'butter_bridge' , body: 'Is this thing on?'
+// };
 
 //                 return request(app)
 //                 .post('api/articles/1/comments')
