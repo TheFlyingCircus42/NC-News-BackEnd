@@ -300,7 +300,7 @@ describe("GET: /api/articles/:article_id/comments" , ()=>
 // /// TASK 06 - POST COMMENT TO ARTICLE BY ID
 
 // ??? Shpuld this endpoint be different? it matched the GET: article comments EP ??? !!!
-describe.("POST:/api/articles/:article_id/comments", ()=> 
+describe("POST:/api/articles/:article_id/comments", ()=> 
     {
         test("POST: 201: route should be available",()=>{
             const newComment = {username: 'butter_bridge' , body: 'Is this thing on?'} ;
