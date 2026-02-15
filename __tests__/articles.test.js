@@ -353,7 +353,7 @@ describe("POST:/api/articles/:article_id/comments", ()=>
                 })    
     })
 
-describe.only("PATCH: 200: /api/articles/:article_id", () => {
+describe("PATCH: 200: /api/articles/:article_id", () => {
 
     test("route exists", async () => {
         const newVotes = { inc_votes: 1 };
