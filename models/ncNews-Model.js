@@ -68,6 +68,22 @@ exports.postCommentToArticleID = ({ article_id, username , body }) =>
         .then(({ rows }) => rows[0]);
     }
 
+exports.patchVotesByArticleID = (article_id , newVotes) => 
+    {
+        const numOfVotes = newVotes.inc_votes;
+
+        return db.query (
+            `UPDATE articles
+            SET votes = votes + $2
+            WHERE article_id =$1
+            RETURNING *;` , [article_id , numOfVotes] )
+
+            .then(({rows})=> rows[0])
+    }
+    
+
+
+
 //// 003 USERS
     /// FETCH ALL USERS
 exports.fetchUsers = ()=>

@@ -353,32 +353,91 @@ describe("POST:/api/articles/:article_id/comments", ()=>
                 })    
     })
 
+describe.only("PATCH: 200: /api/articles/:article_id", () => {
+
+    test("route exists", async () => {
+        const newVotes = { inc_votes: 1 };
+
+        await request(app)
+            .patch('/api/articles/1')
+            .send(newVotes)
+            .expect(200);
+    });
+
+    test("returns updated article for POSITIVE votes", async () => {
+        const newVotes = { inc_votes: 1 };
+
+        const { body } = await request(app)
+            .patch('/api/articles/1')
+            .send(newVotes)
+            .expect(200);
+
+        expect(body.article.votes).toBe(101);
+        expect(body.article.article_id).toBe(1);
+    });
+
+    test("returns updated article for NEGATIVE votes", async () => {
+        const newVotes = { inc_votes: -1 };
+
+        const { body } = await request(app)
+            .patch('/api/articles/1')
+            .send(newVotes)
+            .expect(200);
+
+        expect(body.article.votes).toBe(99);
+        expect(body.article.article_id).toBe(1);
+    });
+
+});
 
 
-///////////////////////////////////////////////////////////////
-// describe("POST: /api/articles/:article_id/comments" , ()=> 
+
+
+
+// describe.only("PATCH: 200: /api/articles/:article_id" ,  () =>
 //     {
-//         test("POST: 201: route should be available" , ()=> 
+//         test("PATCH: 200: /api/articles/:article_id should be available route", async ()=> 
 //             {
-//                 const newComment = {username: 'butter_bridge' , body: 'Is this thing on?'
-// };
+//                 const newVotes = { "inc_votes" : 1 }
 
-//                 return request(app)
-//                 .post('api/articles/1/comments')
-//                 .send(newComment)
-//                 .expect(201)
-//                 .then(({ body })=> 
+//                 return request (app)
+//                 .patch('/api/articles/1')
+//                 .send(newVotes)
+//                 .expect(200)
+
+//             })
+
+//         test("PATCH: 200: /api/articles/:article_id should return an updated article for POSITIVE no of votes ", ()=> 
+//             {
+//                 const newVotes = { "inc_votes" : 1 }
+
+//                 return request (app)
+//                 .patch('/api/articles/1')
+//                 .send(newVotes)
+//                 .expect(200)
+//                 .then(({body})=>
 //                     {
-//                         const { returnComment } = body;
+//                         const { article } = body;
 
-//                         expect()
+//                         expect(article.votes).toBe(101)
+//                         expect(article.article_id).toBe(1)
+//                     })
+//             } )
+//         test("PATCH: 200: /api/articles/:article_id should return an updated article for NEGATIVE no of votes" , ()=>
+//             {
+//                 const newVotes = { inc_votes : -1 }
+
+//                 return request (app)
+//                 .patch('/api/articles/1')
+//                 .send(newVotes)
+//                 .expect(200)
+//                 .then(({body})=>
+//                     {
+//                         const { article } = body;
+
+//                         expect(article.votes).toBe(99)
+//                         expect(article.article_id).toBe(1)
 //                     })
 //             })
-//         test("POST: 201: - responds with the posted article")
-//     })
 
-// should be available on /api/articles/:article_id/comments
-//REQUEST accespts
-    // -> OBJECT { username // body}
-// RESPONDS WITH 
-    //-> the posted comment
+//     })

@@ -58,13 +58,8 @@ exports.fetchArticleComments = (request , response) =>
 const { postCommentToArticleID } = require('../services/ncNews-Services')
 exports.postCommentToArticleID = (request , response ) => 
     {
-        // const newComment = request.body;
-        // console.log("new comment (ctrl lyr) >>>",newComment)
-                // const mappedComment = 
-        //     { author: newComment.username, body: newComment.body}
-        // console.log("mapped comment ctrl lyr >>>> mappedComment" , mappedComment)
+
         const newComment =request.body
-        console.log("ctrl lyr / newComment >>>",newComment)
         const { article_id } = request.params;
 
         postCommentToArticleID(article_id , newComment).then((comment)=> 
@@ -73,6 +68,22 @@ exports.postCommentToArticleID = (request , response ) =>
                 .send({ comment } )
             })
     }
+
+    // task 07 patch votes by article id
+    const { patchVotesByArticleID } = require('../services/ncNews-Services')
+    exports.patchVotesByArticleID = (req, res) => 
+        {
+
+            const { article_id } = req.params;
+            const newVotes = req.body;
+
+            patchVotesByArticleID(article_id, newVotes)
+            .then((updatedArticle) => 
+                {
+                    res.status(200).send({ article: updatedArticle });
+                });
+        };
+
 
 /// 003 USERS
 const { fetchUsers } = require('../services/ncNews-Services')

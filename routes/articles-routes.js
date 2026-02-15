@@ -10,10 +10,6 @@ const articlesRouter = express.Router();
 const { fetchArticles } = require('../controllers/ncNews-Controller')
 articlesRouter.get('/' , fetchArticles);
 
-// fetch article by ID No.
-const { fetchArticleByID } = require('../controllers/ncNews-Controller')
-articlesRouter.get('/:article_id' , fetchArticleByID)
-
 // task 05 - FETCH COMMENST BY ARTICLE ID
 const { fetchArticleComments } = require('../controllers/ncNews-Controller')
 articlesRouter.get('/:article_id/comments' , fetchArticleComments)
@@ -21,6 +17,14 @@ articlesRouter.get('/:article_id/comments' , fetchArticleComments)
 // task 06 - POST COMMENT
 const { postCommentToArticleID } = require('../controllers/ncNews-Controller')
 articlesRouter.post('/:article_id/comments' , postCommentToArticleID)
+
+// fetch article by ID No.
+const { fetchArticleByID } = require('../controllers/ncNews-Controller')
+articlesRouter.get('/:article_id' , fetchArticleByID)
+
+//07 PATCH VOTES BY ARTICLE ID
+const { patchVotesByArticleID } = require('../controllers/ncNews-Controller')
+articlesRouter.patch('/:article_id' , patchVotesByArticleID)
 
 
 ////////////////////////////

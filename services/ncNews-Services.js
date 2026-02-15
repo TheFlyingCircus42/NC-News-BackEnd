@@ -39,6 +39,12 @@ exports.postCommentToArticleID = (article_id , newComment) =>
         return postCommentToArticleID({ article_id , ...newComment});
     }
 
+    /// task 07 - patch votes by article id
+const { patchVotesByArticleID } = require("../models/ncNews-Model")
+exports.patchVotesByArticleID = (article_id , newVotes) =>
+{
+    return patchVotesByArticleID(article_id , newVotes)
+}
 
 /// 003 USERS
 const { fetchUsers } = require('../models/ncNews-Model')
