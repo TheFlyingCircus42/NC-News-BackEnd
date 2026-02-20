@@ -37,7 +37,8 @@ const articlesRouter = require('./routes/articles-routes');
 const usersRouter = require('./routes/users-routes')
   app.use('/api/users' , usersRouter)
 
-
+// const commentsRouter = require('./routes/comments-routes')
+//   app._router.use('./api/comments')
 
 module.exports = app
 
