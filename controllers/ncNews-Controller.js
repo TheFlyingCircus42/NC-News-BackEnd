@@ -1,7 +1,6 @@
 //// NC NEWS CONTROLLER 
 /// SEND TO SERVICES -->
 
-
 /// # 000 - Hello
 const { fetchHello } = require('../services/ncNews-Services')
 exports.fetchHello = (request , response) => 

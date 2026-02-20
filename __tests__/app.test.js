@@ -4,7 +4,7 @@ const seed = require('../db/seeds/seed')
 const data = require('../db/data/test-data')
 const request = require("supertest")
 
-
+console.log("CHECKING THIS FORM APP TEST")
 
 beforeEach(() => {
   return seed(data);
