@@ -1,6 +1,6 @@
-console.log("NODE_ENV:", process.env.NODE_ENV);
-console.log("DATABASE_URL exists?", !!process.env.DATABASE_URL);
-
+console.log("ENV:", process.env.NODE_ENV);
+console.log("Has DATABASE_URL?", !!process.env.DATABASE_URL);
+console.log("Has PGDATABASE?", !!process.env.PGDATABASE);
 
 const { Pool } = require("pg");
 
