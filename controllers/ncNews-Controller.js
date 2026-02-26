@@ -97,6 +97,19 @@ exports.fetchUsers = (request , response ) =>
             });
     }
 
+/// 08. CORE: DELETE /api/comments/:comment_id
+const { deleteCommentById: deleteCommentService } = require ('../services/ncNews-Services');
 
+exports.deleteCommentById = ( req , res , next) => 
+    {
+        const { comment_id } = req.params;
+
+        deleteCommentService(comment_id)
+        .then(()=>
+            {
+                res.status(204).send();
+            })
+            .catch(next)
+    };
 
  
