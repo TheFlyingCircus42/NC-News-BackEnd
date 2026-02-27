@@ -41,8 +41,22 @@ const articlesRouter = require('./routes/articles-routes');
 const usersRouter = require('./routes/users-routes')
   app.use('/api/users' , usersRouter)
 
-// const commentsRouter = require('./routes/comments-routes')
-//   app._router.use('./api/comments')
+  /// 08. CORE: DELETE /api/comments/:comment_id
+const commentsRouter = require('./routes/comments-routes')
+  app.use('/api/comments' , commentsRouter)
+
+  /// 500 handler
+  app.use((err , req , res , next) => 
+    {
+      if (err.status && err.message) 
+        {
+          res.status(err.status).send({ msg: err.message});
+        } 
+        else 
+          {
+            res.status(500).send({msg: "Internal Server Error"});
+          }
+    });
 
 module.exports = app
 

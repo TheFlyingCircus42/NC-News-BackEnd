@@ -52,3 +52,47 @@ exports.fetchUsers = () =>
     {
         return fetchUsers();
     }
+
+/// 08. CORE: DELETE /api/comments/:comment_id
+const { deleteCommentById: deleteCommentModel } = require('../models/ncNews-Model');
+exports.deleteCommentById = (comment_id) => 
+    {
+        const id = parseInt(comment_id);
+            
+console.log("Deleting comment with id:", comment_id, "parsed as:", id);
+
+            if(isNaN(id))
+                {
+                   const err = new Error("Bad request");
+                   err.status = 400;
+                   return Promise.reject(err);
+                   
+                    // return Promise.reject({ status: 400, msg: "Bad request"});
+                }
+            
+        return Promise.resolve()
+        .then(() => deleteCommentModel(id))
+        .then((deletedComment)=>
+            {
+console.log("deleted comment from then block", deletedComment)
+
+                if (!deletedComment) 
+                {
+                    const err = new Error("Comment not found");
+                    err.status = 404;
+                    return Promise.reject(err);
+                    
+                    // return Promise.reject(
+                    //     {
+                    //         status: 404,
+                    //         msg: "Comment not found"
+                    //     });
+                }
+                return deletedComment
+            })
+                .catch((err)=>
+                    {
+console.error("error in catch block", err)
+                        throw err;
+                    })
+    }
