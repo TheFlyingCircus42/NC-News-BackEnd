@@ -70,7 +70,8 @@ console.log("Deleting comment with id:", comment_id, "parsed as:", id);
                     // return Promise.reject({ status: 400, msg: "Bad request"});
                 }
             
-        return  deleteCommentModel(id)
+        return Promise.resolve()
+        .then(() => deleteCommentModel(id))
         .then((deletedComment)=>
             {
 console.log("deleted comment from then block", deletedComment)
