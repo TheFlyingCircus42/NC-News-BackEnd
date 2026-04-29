@@ -2,15 +2,11 @@
 
 const express = require("express")
 const app = express()
-
 const path = require('path');
-
 const cors = require('cors');
 
 app.use(cors());
-
 app.use(express.json())
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 /// NO END-POINT                  <<----< REVISIT
@@ -22,7 +18,6 @@ res.status(200).send({ message: 'Hello World!' });
 app.get('/api', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/html/index.html'));
 });
-
 
 
 /// # 000 - Hello
@@ -45,6 +40,7 @@ const usersRouter = require('./routes/users-routes')
 const commentsRouter = require('./routes/comments-routes')
   app.use('/api/comments' , commentsRouter)
 
+  
   /// 500 handler
   app.use((err , req , res , next) => 
     {
@@ -59,4 +55,3 @@ const commentsRouter = require('./routes/comments-routes')
     });
 
 module.exports = app
-
