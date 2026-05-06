@@ -49,15 +49,15 @@ Originally developed during the Northcoders bootcamp, this project is actively m
 
 ---
 
-## 💻 Local Setup
+## 💻 Local Setup For Back End Repo
 
 Set up requires: 
-- NPM & NODE - https://docs.npmjs.com/downloading-and-installing-node-js-and-npm 
-- PostgresSQL - https://www.postgresql.org/download/
+NPM & NODE - https://docs.npmjs.com/downloading-and-installing-node-js-and-npm   
+PostgresSQL - https://www.postgresql.org/download/  
 
-- Clone the repo and install dependencies:
+Clone the repo and install dependencies:
 
-- go to  https://github.com/TheFlyingCircus42/NC-News-BackEnd
+- go to:  https://github.com/TheFlyingCircus42/NC-News-BackEnd
 - fork and clone repo
 - cd NC-News-BackEnd
 - npm install
@@ -65,8 +65,6 @@ Set up requires:
 - Seed local DB (see below - requires Postgres SQL)
 - run the command "npm run dev" to activate nodemon. Should return the following:
 <img width="320" height="114" alt="image" src="https://github.com/user-attachments/assets/0b91cfa7-ffd6-4195-ae5c-6632c3403328" />
-
-
 
 
 # NC News Seeding DB
