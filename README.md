@@ -51,8 +51,8 @@ Originally developed during the Northcoders bootcamp, this project is actively m
 
 ## 💻 Local Setup For Back End Repo
 
-Set up requires: 
-NPM & NODE - https://docs.npmjs.com/downloading-and-installing-node-js-and-npm   
+Set up requires:   
+NPM & NODE   - https://docs.npmjs.com/downloading-and-installing-node-js-and-npm   
 PostgresSQL - https://www.postgresql.org/download/  
 
 Clone the repo and install dependencies:
