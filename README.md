@@ -21,24 +21,24 @@ Originally developed during the Northcoders bootcamp, this project is actively m
 
 ## 🚀 Features
 
-- View articles by topic
+- RESTful endpoints for articles, comments, and users
+- Filter articles by topic
 - Vote on articles and comments
 - Add and delete comments
-- Optimistic UI updates for voting and posting
-- Responsive design for mobile and desktop
-- Dynamic homepage (featured + trending articles)
+- Structured error handling (400, 404, etc.)
+- Fully tested with Jest & Supertest
+- MVC-style architecture
 
 ---
 
-## ⚙️ Backend / API
+## 🧱 Tech Stack (Back End)
 
-- PostgreSQL database (Supabase)
-- Node.js + Express
-- RESTful API
-- Hosted on Render
-- Tested with Jest & Supertest
-
----
+- Node.js
+- Express
+- PostgreSQL (Supabase)
+- pg (node-postgres)
+- Jest & Supertest (testing)
+- Render (deployment)---
 
 ## 🧱 Tech Stack (Frontend)
 
